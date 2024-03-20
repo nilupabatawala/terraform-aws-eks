@@ -28,3 +28,18 @@ variable "private_subnet2" {
   description = "Private Subnet 1"
 
 }
+
+
+variable "ami" {
+  description = "EC2 ami"
+  type        = string
+  default     = ""
+}
+
+
+variable "instance_type" {
+  description = "EC2 instance type"
+  type        = string
+  default     = ""
+}
+
