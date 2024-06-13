@@ -53,7 +53,7 @@ resource "aws_subnet" "public_subnet1" {
   vpc_id            = aws_vpc.eks-vpc.id
   cidr_block        = var.public_subnet1
   availability_zone = data.aws_availability_zones.available.names[0]
-
+  map_public_ip_on_launch = true
   tags = {
     "Name"                       = "public-subnet-1"
     "kubernetes.io/role/elb"     = "1"
@@ -66,7 +66,7 @@ resource "aws_subnet" "public_subnet2" {
   vpc_id            = aws_vpc.eks-vpc.id
   cidr_block        = var.public_subnet2
   availability_zone = data.aws_availability_zones.available.names[1]
-
+  map_public_ip_on_launch = true
   tags = {
     "Name"                       = "public-subnet-2"
     "kubernetes.io/role/elb"     = "1"

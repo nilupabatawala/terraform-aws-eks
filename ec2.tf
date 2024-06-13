@@ -6,6 +6,11 @@ resource "aws_instance" "instance" {
   key_name                    = aws_key_pair.tf-key.key_name
   associate_public_ip_address = true
   security_groups             = [aws_security_group.allow_ssh.id]
+
+  root_block_device {
+    volume_size = 40  # Size in GB
+  }
+
   lifecycle {
     ignore_changes = [security_groups]
   }
@@ -14,6 +19,20 @@ resource "aws_instance" "instance" {
 
 }
 
+# resource "aws_ebs_volume" "ec2-volume" {
+#   availability_zone = data.aws_availability_zones.available.names[0]
+#   size              = 40
+
+#   tags = {
+#     Name = "Jenkins-instance-volume"
+#   }
+# }
+
+# resource "aws_volume_attachment" "ebs_att" {
+#   device_name = "/dev/sdh"
+#   volume_id   = aws_ebs_volume.ec2-volume.id
+#   instance_id = aws_instance.instance.id
+# }
 
 #configure aws key pair
 resource "aws_key_pair" "tf-key" {
